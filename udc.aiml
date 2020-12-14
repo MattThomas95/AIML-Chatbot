@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+  <category>
+    <pattern>*</pattern>
+    <template>I have no answer for that.</template>
+  </category>
+
+  <category>
+      <pattern></pattern>
+      <template><think><set name="topic">INTRO</set></think></template>
+  </category>
+  
+  <category>
+      <pattern>HI</pattern>
+      <template>
+          <random>
+          <li>Hello. What is your name?<think><set name="topic">NAME</set></think></li>
+          <li>Hello. What is your name?<think><set name="topic">NAME</set></think></li>
+          <li>Hi there. What is your name?<think><set name="topic">NAME</set></think></li>
+          <li>Greetings. What is your name?<think><set name="topic">NAME</set></think></li>
+      </random></template>
+  </category>
+
+<category>
+    <pattern>HELLO</pattern>
+    <template><srai>HI</srai></template>
+</category>
+
+<topic name="NAME">
+<category>
+    <pattern>MY NAME IS *</pattern>
+    <template>
+        Hi there, <formal><set name="firstname"><star/></set></formal>. 
+            Nice to meet you!
+    </template>
+</category>
+
+<category>
+    <pattern>*</pattern>
+    <template>
+        Hi there, <formal><set name="firstname"><star/></set></formal>. 
+            Nice to meet you! I am CareerBot, your virtual career advisor.
+            <think><set name="topic">INTRO</set></think>
+    </template>
+</category>
+</topic>
+
+<topic name="INTRO">
+<category>
+    <pattern>*</pattern>
+    <template>To start with the career placement questionnaire please type "START"</template>
+</category>
+</topic>
+
+<category>
+    <pattern>START</pattern>
+    <template>Okay let us begin. Do you enjoy designing?
+    <think><set name="topic">Q2</set></think>
+    </template>
+</category>
+
+<topic name="Q2">
+<category>
+    <pattern>YES</pattern>
+    <template>Do you enjoy coding wesbites, apps, or software?
+        <think><set name="topic">Q3</set></think>
+        <think><set name="interest">1</set></think>
+    </template>
+</category>
+<category>
+    <pattern>NO</pattern>
+    <template>Do you enjoy coding wesbites, apps, or software?
+        <think><set name="topic">Q3</set></think>
+    </template>
+</category>
+</topic>
+
+<topic name="Q3">
+<category>
+    <pattern>YES</pattern>
+    <template>Do you like to work with data and use databases?
+        <think><set name="topic">Q4</set></think>
+        <think><set name="interest">2</set></think>
+     </template>
+</category>
+<category>
+    <pattern>NO</pattern>
+    <template>Do you like to work with data and use databases?
+     <think><set name="topic">Q4</set></think>
+    </template>
+</category>
+</topic>
+
+<topic name="Q4">
+<category>
+    <pattern>YES</pattern>
+    <template>Does hacking or cyber crime prevention interest you?
+        <think><set name="topic">Q5</set></think>
+        <think><set name="interest">3</set></think>
+     </template>
+</category>
+<category>
+    <pattern>NO</pattern>
+    <template>Does hacking or cyber crime prevention interest you?
+     <think><set name="topic">Q5</set></think>
+    </template>
+</category>
+</topic>
+
+<topic name="Q5">
+<category>
+    <pattern>YES</pattern>
+    <template>Does installing computer hardware and software intrest you?
+        <think><set name="topic">END</set></think>
+        <think><set name="interest">4</set></think>
+     </template>
+</category>
+<category>
+    <pattern>NO</pattern>
+    <template>Does installing computer hardware and software intrest you?
+     <think><set name="topic">END</set></think>
+    </template>
+</category>
+</topic>
+
+<topic name="END">
+<category>
+    <pattern>YES</pattern>
+    <template><formal><get name="firstname"/></formal>,
+    based on our data,
+    <condition name="interest">
+        <li value="1"> "Web Developer" </li>
+        <li value="2"> "Software Developer" </li>
+        <li value="3"> "Database Administrator" </li>
+        <li value="4"> "Information Security Analyst" </li>
+        <li value="5"> "IT Specialist" </li>
+    </condition>
+     is a great fit for you.
+     More info about that career can be found by clicking the link below.
+     <condition name="interest">
+        <li value="1"><button>
+        <text>More Info</text>
+        <url>https://www.wgu.edu/blog/what-does-web-developer-how-to-become-one1911.html</url>
+            </button> </li>
+        <li value="2"><button>
+        <text>More Info</text>
+        <url>https://www.wgu.edu/blog/how-become-software-developer1712.html</url>
+            </button> </li>
+        <li value="3"><button>
+        <text>More Info</text>
+        <url>https://www.wgu.edu/blog/roles-skills-and-salaries-for-data-analyst-jobs2001.html</url>
+            </button> </li>
+        <li value="4"><button>
+        <text>More Info</text>
+        <url>https://www.wgu.edu/blog/what-does-cybersecurity-analyst-do1808.html</url>
+            </button> </li>
+        <li value="5"><button>
+        <text>More Info</text>
+        <url>https://www.wgu.edu/blog/3-it-jobs-with-predictable-schedules1909.html</url>
+            </button> </li>
+    </condition>
+     <think><set name="topic"></set></think>
+    </template>
+</category>
+
+
+<category>
+    <pattern>NO</pattern>
+    <template><formal><get name="firstname"/></formal>,
+    based on our data,
+    <condition name="interest">
+        <li value="1"> "Web Developer" </li>
+        <li value="2"> "Software Developer" </li>
+        <li value="3"> "Database Administrator" </li>
+        <li value="4"> "Information Security Analyst" </li>
+        <li value="5"> "IT Specialist" </li>
+    </condition>
+     is a great fit for you.
+     More info about that career can be found by clicking the link below.
+     <condition name="interest">
+        <li value="1"><button>
+        <text>More Info</text>
+        <url>https://www.wgu.edu/blog/what-does-web-developer-how-to-become-one1911.html</url>
+            </button> </li>
+        <li value="2"><button>
+        <text>More Info</text>
+        <url>https://www.wgu.edu/blog/how-become-software-developer1712.html</url>
+            </button> </li>
+        <li value="3"><button>
+        <text>More Info</text>
+        <url>https://www.wgu.edu/blog/roles-skills-and-salaries-for-data-analyst-jobs2001.html</url>
+            </button> </li>
+        <li value="4">
+            <button>
+        <text>More Info</text>
+        <url>https://www.wgu.edu/blog/what-does-cybersecurity-analyst-do1808.html</url>
+            </button></li>
+        <li value="5"><button>
+        <text>More Info</text>
+        <url>https://www.wgu.edu/blog/3-it-jobs-with-predictable-schedules1909.html</url>
+            </button> </li>
+    </condition>
+     <think><set name="topic"></set></think>
+    </template>
+</category>
+</topic>
+
+
+
+</aiml>
